@@ -45,6 +45,24 @@ func main() {
 	}
 	defer client.Close()
 
+	// Invoke actor with ID "123"
+	res, err := client.GrpcClient().InvokeActorV2Alpha1(ctx, &runtime.InvokeActorV2Alpha1Request{
+		AppId:     "dev",
+		ActorType: "myactor",
+		ActorId:   "123",
+		Method:    "hello",
+		Data:      []byte("first call"),
+		Metadata: map[string]string{
+			"foo": "bar",
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("Response:", string(res.Data))
+
+	time.Sleep(2 * time.Second)
+
 	wg := sync.WaitGroup{}
 	wg.Add(3)
 
@@ -139,8 +157,8 @@ type alphaSrv struct {
 
 // Invokes an actor using the Actors v2 APIs
 func (s *alphaSrv) OnActorInvokeV2(ctx context.Context, in *pb.ActorInvokeV2Request) (*pb.ActorInvokeV2Response, error) {
-	fmt.Println("Request:", string(in.Data.Value), "State:", in.State)
-	time.Sleep(time.Second)
+	fmt.Println("Request with data: '"+string(in.Data.Value)+"' State:", in.State)
+	time.Sleep(2 * time.Second)
 	newState, _ := structpb.NewStruct(map[string]any{
 		"date": time.Now().UTC().String(),
 	})

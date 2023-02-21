@@ -63,6 +63,7 @@ docker run -n postgresdev -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword --r
 ### Start the app
 
 ```sh
+cd actor
 dapr run \
   --app-id dev \
   --app-protocol grpc \
@@ -71,3 +72,7 @@ dapr run \
   --resources-path ./config \
   go run ./dev/
 ```
+
+You should see two actors being invoked.
+
+One is invoked by two goroutines at the same time, and one of the calls is added to the queue.
