@@ -19,6 +19,7 @@ The Placement service can be run either as single-instance (in which case requir
 
 Other issues with the current Actors include:
 
+- Scalability as number of actor types increase. After we reach a certain number of actors (~600), the connection with the Placement service fails.
 - Scalability issues with actor reminders, since they're currently executing by the apps
 - Lack of a "DeleteAll" method to remove all state belonging to a given actor in a single call (e.g. for garbage collection)
 - The concept of "active" actors means that they are tied to a specific node, and that adds complexities such as: periodically "un-mounting" actors that have been inactive for a period of time, rebalancing in case of uneven distribution, and handling failovers.
