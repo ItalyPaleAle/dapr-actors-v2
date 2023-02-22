@@ -45,7 +45,7 @@ Because there's no Placement and no need for maintaining locks within a Dapr sid
 
 ### Related proposals 
 
-- dapr/dapr#5403: proposal for improving actor reminder scalability
+- dapr/dapr#5403: proposal for improving scalability of placement and actor reminders
 
 ### Related issues 
 
