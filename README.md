@@ -1,3 +1,5 @@
+> This POC has been abandoned
+
 # Dapr Actors v2 proposal and POC
 
 This repo contains a proposal and initial proof-of-concept for Dapr Actors v2.
